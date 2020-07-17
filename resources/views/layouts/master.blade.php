@@ -11,10 +11,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
   <title>Laravel| Starter</title>
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body class="hold-transition sidebar-mini">
-<div class="wrapper">
+<div class="wrapper"  id="app">
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -49,7 +51,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="#" alt="User Avatar" class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -65,7 +67,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   John Pierce
@@ -81,7 +83,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
+              <img src="#" alt="User Avatar" class="img-size-50 img-circle mr-3">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Nora Silvester
@@ -149,7 +151,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="./img/profile.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"> {{ Auth::user()->name }} </a>
         </div>
       </div>
 
@@ -158,38 +160,93 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Starter Pages
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="#" class="nav-link active">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Active Page</p>
-                </a>
-              </li>
-              <li class="nav-item">
+
+
+            <li class="nav-item">
+                <router-link to="/dashboard" class="nav-link  active">
+                    <i class="nav-icon fas fa-tachometer-alt"></i>
+                    <p>
+                    Dashboard
+                    </p>
+                </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/profile" class="nav-link">
+                  <i class="nav-icon fas fa-user"></i>
+                  <p>
+                  Profile
+                  </p>
+              </router-link>
+          </li>
+            <li class="nav-item">
+                <router-link to="/personalInfo" class="nav-link">
+                    <i class="nav-icon fas fa-user-edit"></i>
+                    <p>
+                    Personal Information
+                    </p>
+                </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/assets" class="nav-link">
+                  <i class="nav-icon fas fa-university"></i>
+                  <p>
+                  Assets
+                  </p>
+              </router-link>
+          </li>
+            <li class="nav-item">
+                <router-link to="/income" class="nav-link">
+                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <p>
+                    Income
+                    </p>
+                </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/libilities" class="nav-link">
+                  <i class="nav-icon fas fa-credit-card"></i>
+                  <p>
+                  Liabilities
+                  </p>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/expenses" class="nav-link">
+                <i class="nav-icon fas fa-calculator"></i>
+                <p>
+                Expenses
+                </p>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/final-review" class="nav-link">
+                <i class="nav-icon fas fa-eye"></i>
+                <p>
+                Final Review
+                </p>
+              </router-link>
+            </li>
+            <li class="nav-item">
+              <router-link to="/download" class="nav-link">
+                <i class="nav-icon fas fa-download"></i>
+                <p>
+                Download
+                </p>
+              </router-link>
+            </li>
+
+           
+
+            <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Inactive Page</p>
+                    <i class="nav-icon fas fa-power-off"></i>
+                    <p>
+                    Logout
+                    </p>
                 </a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Simple Link
-                <span class="right badge badge-danger">New</span>
-              </p>
-            </a>
-          </li>
+            </li>
+
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
@@ -204,13 +261,13 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Starter Page</h1>
+            {{-- <h1 class="m-0 text-dark">Starter Page</h1> --}}
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
+            {{-- <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
+            </ol> --}}
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -220,63 +277,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-
-                <p class="card-text">
-                  Some quick example text to build on the card title and make up the bulk of the card's
-                  content.
-                </p>
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div>
-            </div><!-- /.card -->
-          </div>
-          <!-- /.col-md-6 -->
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card card-primary card-outline">
-              <div class="card-header">
-                <h5 class="m-0">Featured</h5>
-              </div>
-              <div class="card-body">
-                <h6 class="card-title">Special title treatment</h6>
-
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-          </div>
-          <!-- /.col-md-6 -->
-        </div>
+          <router-view></router-view>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
