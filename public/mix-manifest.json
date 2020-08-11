@@ -1,5 +1,9 @@
 {
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/js/popper.js": "/js/popper.js"
+    "/css/publicHome.css": "/css/publicHome.css",
+    "/js/personalInfo.js": "/js/personalInfo.js",
+    "/js/popper.js": "/js/popper.js",
+    "/js/publicHome.js": "/js/publicHome.js",
+    "/js/jquery.min.js": "/js/jquery.min.js"
 }

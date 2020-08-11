@@ -7,74 +7,77 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'TaxhubBD') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    <!--theme js--->
+    <script src="{{asset('assets/js/jquery.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+    <script src="{{asset('assets/js/mousescroll.js')}}"></script>
+    <script src="{{asset('assets/js/smoothscroll.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.prettyPhoto.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.isotope.min.js')}}"></script>
+    <script src="{{asset('assets/js/jquery.inview.min.js')}}"></script>
+    <script src="{{asset('assets/js/wow.min.js')}}"></script>
+    <script src="{{asset('assets/js/main.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/publicHome.css') }}" rel="stylesheet">
+    <!-- core CSS -->
+    <link href="{{asset('assets/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/animate.min.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/owl.carousel.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/owl.transitions.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/prettyPhoto.css')}}" rel="stylesheet">
+    <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->       
+    <link rel="shortcut icon" href="{{asset('assets/images/ico/logo.ico')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/images/ico/logo-144.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/images/ico/logo-114.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/images/ico/logo-72.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/images/ico/logo-57.png')}}">
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+       @include('layouts.publicHome.header')
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
+        <main class="py-0">
             @yield('content')
         </main>
+        <footer id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                        Copyright &copy; <a href="http://www.taxhubbd.com">TaxhubBD</a>
+                    </div>
+                    <div class="col-sm-6">
+                        <ul class="social-icons">
+                            Stay Connected With 
+                            <li><a href="https://www.facebook.com/Taxhubbd-342276302800457/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://plus.google.com/105088297140247921156"><i class="fa fa-google-plus"></i></a></li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer><!--/#footer--> 
     </div>
+
+    <script src="/js/publicHome.js"></script>
 </body>
 </html>

@@ -1,4 +1,5 @@
 const mix = require('laravel-mix');
+require('laravel-mix-purgecss');
 
 /*
  |--------------------------------------------------------------------------
@@ -12,4 +13,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css').js('node_modules/popper.js/dist/popper.js', 'public/js').sourceMaps();
+    .js('resources/js/publicHome.js', 'public/js/publicHome.js')
+    .js('resources/js/personalInfo.js', 'public/js/personalInfo.js')
+    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/publicHome.scss', 'public/css/publicHome.css')
+    .js('node_modules/popper.js/dist/popper.js', 'public/js')
+    .sourceMaps()
+    .purgeCss();
+
+mix.copy('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.min.js');

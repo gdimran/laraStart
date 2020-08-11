@@ -9,11 +9,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-  <title>Laravel| Starter</title>
+  <title>TaxhubBD</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <link rel="stylesheet" href="/css/app.css">
+  @include('layouts.formCSSJS')
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper"  id="app">
@@ -148,10 +149,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="./img/profile.png" class="img-circle elevation-2" alt="User Image">
+          <img src="./img/profile/{{ Auth::user()->photo }} " class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block"> {{ Auth::user()->name }} </a>
+        <a href="#" class="d-block"> {{ Auth::user()->name }} </a>
         </div>
       </div>
 
@@ -162,25 +163,54 @@ scratch. This page gets rid of all links and provides the needed markup only.
                with font-awesome or any other icon font library -->
 
 
-            <li class="nav-item">
-                <router-link to="/dashboard" class="nav-link  active">
-                    <i class="nav-icon fas fa-tachometer-alt"></i>
+            <li class="nav-item ">
+                <router-link to="/dashboard" class="nav-link ">
+                    <i class="nav-icon fas fa-tachometer-alt green"></i>
                     <p>
                     Dashboard
                     </p>
                 </router-link>
             </li>
+            @can('isAdmin')
+            <li class="nav-item ">
+              <router-link to="" class="nav-link has-treeview menu-open">
+                  <i class="nav-icon fas fa-cog"></i>
+                  <p>
+                  Management <i class="right fas fa-angle-left"></i>
+                  </p>
+              </router-link>
+              <ul class="nav nav-treeview">
+                <li class="nav-item">
+                  <router-link to="/users" class="nav-link">
+                    <i class="fas fa-users nav-icon"></i>
+                    <p>Users</p>
+                  </router-link>
+                </li>
+              </ul>
+          </li>
+        </li>
+        @endcan
             <li class="nav-item">
               <router-link to="/profile" class="nav-link">
-                  <i class="nav-icon fas fa-user"></i>
+                  <i class="nav-icon fas fa-user blue"></i>
                   <p>
                   Profile
                   </p>
               </router-link>
           </li>
+          @can('isAdmin')
+          <li class="nav-item">
+            <router-link to="/developer" class="nav-link">
+                <i class="nav-icon fas fa-tools red"></i>
+                <p>
+                Developer
+                </p>
+            </router-link>
+        </li>
+        @endcan
             <li class="nav-item">
-                <router-link to="/personalInfo" class="nav-link">
-                    <i class="nav-icon fas fa-user-edit"></i>
+                <router-link to="/personal-info" class="nav-link">
+                    <i class="nav-icon fas fa-user-edit indigo"></i>
                     <p>
                     Personal Information
                     </p>
@@ -188,7 +218,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <router-link to="/assets" class="nav-link">
-                  <i class="nav-icon fas fa-university"></i>
+                  <i class="nav-icon fas fa-university orange"></i>
                   <p>
                   Assets
                   </p>
@@ -196,7 +226,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           </li>
             <li class="nav-item">
                 <router-link to="/income" class="nav-link">
-                    <i class="nav-icon fas fa-hand-holding-usd"></i>
+                    <i class="nav-icon fas fa-hand-holding-usd yellow"></i>
                     <p>
                     Income
                     </p>
@@ -204,7 +234,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <router-link to="/libilities" class="nav-link">
-                  <i class="nav-icon fas fa-credit-card"></i>
+                  <i class="nav-icon fas fa-credit-card teal" ></i>
                   <p>
                   Liabilities
                   </p>
@@ -212,7 +242,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <router-link to="/expenses" class="nav-link">
-                <i class="nav-icon fas fa-calculator"></i>
+                <i class="nav-icon fas fa-calculator purple"></i>
                 <p>
                 Expenses
                 </p>
@@ -220,7 +250,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <router-link to="/final-review" class="nav-link">
-                <i class="nav-icon fas fa-eye"></i>
+                <i class="nav-icon fas fa-eye cyan"></i>
                 <p>
                 Final Review
                 </p>
@@ -228,7 +258,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             </li>
             <li class="nav-item">
               <router-link to="/download" class="nav-link">
-                <i class="nav-icon fas fa-download"></i>
+                <i class="nav-icon fas fa-download "></i>
                 <p>
                 Download
                 </p>
@@ -238,12 +268,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
            
 
             <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon fas fa-power-off"></i>
-                    <p>
-                    Logout
-                    </p>
-                </a>
+             
+              <a class="nav-link" href="{{ route('logout') }}"
+              onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();"> <i class="nav-icon fas fa-power-off red"></i>
+               {{ __('Logout') }}
+           </a>
+
+           <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+               @csrf
+           </form>
             </li>
 
          
@@ -278,6 +312,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="content">
       <div class="container-fluid">
           <router-view></router-view>
+          <vue-progress-bar></vue-progress-bar>
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </div>
@@ -302,11 +337,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
       Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2014-2019 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
+    <strong>Copyright &copy;2020 <a href="#">TaxhubBD.com</a>.</strong> All rights reserved.
   </footer>
 </div>
 <!-- ./wrapper -->
 
+@auth
+<script>
+    window.user = @json(auth()->user())
+</script>
+@endauth
+
 <script src="/js/app.js"></script>
+
 </body>
 </html>

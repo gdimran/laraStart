@@ -1,13 +1,13 @@
 <template>
-    <div class="comtainer">
+    <div id="personal" class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
-                        This is dashboard
+                      
                     </div>
                     <div class="card-body">
-                        HI this dash board body
+                      <etin></etin>
                     </div>
 
                 </div>
@@ -16,10 +16,17 @@
     </div>
 </template>
 
+
 <script>
+//Vue.component('Etin', require('./components/personalInfo/e-tin.vue').default);
+import Etin from './personalInfo/e-tin.vue';
+
 export default {
-    mounted(){
-        console.log('component mounted.')
-    }
+    components: {
+            Etin
+        },
+    // mounted(){
+    //     console.log('component mounted.')
+    // }
 }
 </script>

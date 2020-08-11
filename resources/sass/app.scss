@@ -6,8 +6,26 @@
 // Bootstrap
 $fa-font-path: "../webfonts";
 @import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-vue/src/index.scss';
 @import '~admin-lte/dist/css/adminlte.css';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
+// @import 'publicHome.scss';
+.router-link-active,
+.router-link-exact-active {
+    background-color: green;
+    color: #fff !important;
+}
+
+.widget-user .widget-user-image>img {
+    border: 3px solid #ffffff;
+    height: 90px;
+    width: 90px;
+}
+
+.user-panel img {
+    height: 2.1rem;
+    width: 2.1rem;
+}
