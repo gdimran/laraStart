@@ -28,7 +28,7 @@
         "admin-lte": "^3.0.5",
         "bootstrap-vue": "^2.16.0",
         "font-awesome": "^4.7.0",
-        "moment": "^2.27.0",
+        "moment": "^2.29.4",
         "sweetalert2": "^9.17.1",
         "vform": "^1.0.1",
         "vue": "^2.6.11",
